@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="fr" id="html-root">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Akey Koffi Clément — Géomètre-Topographe &amp; Géographe SIG</title>
+<meta name="description" content="Portfolio professionnel d'Akey Koffi Clément, opérateur géomètre-topographe et géographe SIG." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D1321; --surface: #141B2E; --surface2: #0B0F1A;
+    --accent: #C9A66B; --accent2: #5C8374;
+    --text: #F1EDE4; --text-body: #c7cad6; --text-muted: #93A0B8;
+    --nav-inactive: #5B6478;
+    --border: rgba(201,166,107,0.16); --border-soft: rgba(255,255,255,0.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; min-height:100vh; background:var(--bg); }
+  body {
+    font-family:'Newsreader', Georgia, serif; color:var(--text); -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(180deg, rgba(13,19,33,0.93) 0%, rgba(13,19,33,0.88) 40%, rgba(13,19,33,0.96) 100%),
+      url('portfolio-bg.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  .display { font-family:'Space Grotesk', Arial, sans-serif; font-weight:600; }
+  .mono { font-family:'JetBrains Mono', 'Courier New', monospace; }
+  .app { width:100%; min-height:100vh; display:flex; flex-direction:column; }
+  .topbar { display:flex; align-items:center; gap:8px; padding:14px 24px; border-bottom:1px solid var(--border-soft); position:sticky; top:0; z-index:40; background:rgba(13,19,33,0.82); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+  .logo-mark { width:32px; height:32px; border-radius:8px; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .brand { font-size:13px; letter-spacing:0.03em; flex:1; }
+  .lang-toggle { display:flex; border:1px solid var(--border); border-radius:999px; overflow:hidden; }
+  .lang-toggle button { padding:6px 12px; font-size:11px; font-family:'JetBrains Mono',monospace; background:none; border:none; color:var(--text-muted); cursor:pointer; }
+  .lang-toggle button.active { background:var(--accent); color:var(--bg); font-weight:600; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+  .eyebrow { font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .eyebrow .dash { width:16px; height:1px; background:var(--accent); display:inline-block; }
+  .section { padding:40px 24px; }
+  h1.hero-title { font-size:2.4rem; line-height:1.08; margin:0 0 10px; }
+  h2.section-title { font-size:1.75rem; margin:0 0 22px; }
+  .card { border-radius:18px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0) 40%), var(--surface); padding:22px; box-shadow:0 12px 32px -16px rgba(0,0,0,0.55); transition:border-color 0.2s ease; }
+  .card:hover { border-color:rgba(201,166,107,0.32); }
+  .card + .card { margin-top:16px; }
+  .card.dashed { border-style:dashed; opacity:0.7; }
+  .lede { color:var(--text-body); line-height:1.75; }
+  .quote { font-style:italic; color:var(--accent2); text-align:center; margin:32px 16px; }
+  .row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border-soft); }
+  .row:last-child { border-bottom:none; }
+  .row .name { font-weight:500; }
+  .row .sub { font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; }
+  .chip { display:inline-block; padding:4px 12px; border-radius:999px; border:1px solid rgba(201,166,107,0.4); color:var(--text); font-size:12px; margin:4px 6px 0 0; }
+  .tag { display:inline-block; padding:5px 10px; border-radius:6px; background:var(--bg); border:1px solid var(--border-soft); color:var(--text-muted); font-size:10px; margin:4px 6px 0 0; }
+  .cert-item { display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; }
+  .cert-item svg { flex-shrink:0; margin-top:3px; }
+  .cert-item .cert-text { display:flex; flex-direction:column; color:var(--text-body); font-size:14px; }
+  .cert-item .cert-en { color:var(--text-muted); font-size:12px; font-style:italic; margin-top:1px; }
+  .cert-item .cert-desc { color:var(--text-muted); font-size:12px; margin-top:4px; line-height:1.4; }
+  .cert-thumb { width:100%; max-width:320px; border-radius:10px; border:1px solid var(--border); display:block; margin-top:10px; cursor:zoom-in; }
+  .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:50; align-items:center; justify-content:center; padding:20px; }
+  .lightbox.active { display:flex; }
+  .lightbox img { max-width:100%; max-height:100%; border-radius:8px; }
+  .btn-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+  .btn-primary { padding:12px 22px; border-radius:999px; background:var(--accent); color:var(--bg); font-weight:600; font-size:14px; border:none; text-decoration:none; display:inline-block; }
+  .btn-outline { padding:12px 22px; border-radius:999px; border:1px solid rgba(201,166,107,0.5); color:var(--text); font-weight:600; font-size:14px; background:transparent; text-decoration:none; display:inline-block; }
+  .contact-row { display:flex; align-items:center; gap:16px; padding:16px; border-radius:16px; border:1px solid var(--border); background:var(--surface); text-decoration:none; color:var(--text); margin-bottom:12px; }
+  .contact-row .main { font-size:14px; font-weight:500; margin:0; }
+  .contact-row .label { color:var(--text-muted); font-size:11px; margin:2px 0 0; font-family:'JetBrains Mono',monospace; }
+  .hero { position:relative; min-height:65vh; display:flex; flex-direction:column; justify-content:center; overflow:hidden; }
+  .hero-inner { position:relative; z-index:2; }
+  .contour-svg { position:absolute; inset:0; width:100%; height:100%; opacity:0.14; pointer-events:none; }
+  .contour-line { animation: drift 8s ease-in-out infinite; }
+  @keyframes drift { 0%{transform:translateX(0)} 50%{transform:translateX(6px)} 100%{transform:translateX(0)} }
+  @media (prefers-reduced-motion: reduce) { .contour-line { animation:none; } }
+  .role { color:var(--text-muted); font-size:1.05rem; margin:0 0 2px; }
+  .role2 { color:var(--accent2); font-style:italic; font-size:1.05rem; margin:0 0 16px; }
+  .badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; border:1px solid var(--border); background:var(--surface); font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--accent); margin-bottom:20px; letter-spacing:0.02em; }
+  .bottomnav { display:flex; border-top:1px solid var(--border-soft); background:rgba(11,15,26,0.85); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); position:sticky; bottom:0; z-index:40; }
+  .nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:10px 0; background:none; border:none; cursor:pointer; text-decoration:none; }
+  .nav-btn svg { color:var(--nav-inactive); width:17px; height:17px; }
+  .nav-btn .label { font-size:9px; color:var(--nav-inactive); font-family:'JetBrains Mono',monospace; }
+  .nav-btn.active svg, .nav-btn.active .label { color:var(--accent); }
+  .pull-quote { border-left:2px solid var(--accent); padding-left:16px; margin:24px 0; color:var(--text-body); font-style:italic; line-height:1.7; }
+  .field-photo { width:100%; border-radius:14px; border:1px solid var(--border); display:block; }
+  .field-photo-caption { color:var(--text-muted); font-size:11px; font-family:'JetBrains Mono',monospace; margin:8px 0 0; text-align:center; }
+  .map-thumb { width:100%; border-radius:10px; border:1px solid var(--border); display:block; margin-top:12px; cursor:zoom-in; background:#fff; }
+  .portrait-circle { width:168px; height:168px; border-radius:50%; object-fit:cover; border:3px solid var(--accent); display:block; margin:4px auto 20px; box-shadow:0 10px 28px -10px rgba(0,0,0,0.6); }
+  .portrait-wrap { text-align:center; }
+  .group-header { display:flex; align-items:baseline; justify-content:space-between; margin:8px 0 16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .group-header:not(:first-of-type) { margin-top:36px; }
+  .group-title { font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.02rem; color:var(--text); }
+  .group-count { font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--text-muted); letter-spacing:0.05em; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="topbar">
+    <div class="logo-mark"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0D1321"><path d="M12 3 2 21h20L12 3Z"/></svg></div>
+    <div style="flex:1; line-height:1.15;">
+      <div class="display i18n" style="font-size:15px; color:var(--text);" data-fr="Mon Portfolio" data-en="My Portfolio">Mon Portfolio</div>
+      <div class="mono" style="font-size:9px; color:var(--text-muted); letter-spacing:0.05em; margin-top:1px;">AKEY K. CLÉMENT</div>
+    </div>
+    <div class="lang-toggle">
+      <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <!-- ACCUEIL -->
+  <div id="tab-accueil" class="tab-panel active">
+    <div class="hero">
+      <svg class="contour-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <ellipse cx="180" cy="60" rx="260" ry="40" fill="none" stroke="#C9A66B" stroke-width="1" class="contour-line" style="animation-delay:0s"/>
+        <ellipse cx="220" cy="102" rx="254" ry="43" fill="none" stroke="#5C8374" stroke-width="1" class="contour-line" style="animation-delay:0.4s"/>
+        <ellipse cx="180" cy="144" rx="248" ry="46" fill="none" stroke="#5C8374" stroke-width="1" class="contour-line" style="animation-delay:0.8s"/>
+        <ellipse cx="220" cy="186" rx="242" ry="49" fill="none" stroke="#C9A66B" stroke-width="1" class="contour-line" style="animation-delay:1.2s"/>
+        <ellipse cx="180" cy="228" rx="236" ry="52" fill="none" stroke="#5C8374" stroke-width="1" class="contour-line" style="animation-delay:1.6s"/>
+        <ellipse cx="220" cy="270" rx="230" ry="55" fill="none" stroke="#5C8374" stroke-width="1" class="contour-line" style="animation-delay:2.0s"/>
+        <ellipse cx="180" cy="312" rx="224" ry="58" fill="none" stroke="#C9A66B" stroke-width="1" class="contour-line" style="animation-delay:2.4s"/>
+        <ellipse cx="220" cy="354" rx="218" ry="61" fill="none" stroke="#5C8374" stroke-width="1" class="contour-line" style="animation-delay:2.8s"/>
+        <ellipse cx="180" cy="396" rx="212" ry="64" fill="none" stroke="#5C8374" stroke-width="1" class="contour-line" style="animation-delay:3.2s"/>
+      </svg>
+      <div class="hero-inner section">
+        <div class="portrait-wrap">
+          <img class="portrait-circle" src="portrait.jpg" alt="Akey Koffi Clément">
+        </div>
+        <div class="eyebrow" style="justify-content:center;"><span class="dash"></span>N 6.1319° · E 1.2228° — Agoè, Lomé</div>
+        <h1 class="hero-title display">Akey Koffi<br>Clément</h1>
+        <p class="role">Opérateur Géomètre-Topographe</p>
+        <p class="role2 i18n" data-fr="&amp; Géographe SIG" data-en="&amp; GIS Geographer">&amp; Géographe SIG</p>
+        <p class="lede i18n" style="max-width:440px;"
+           data-fr="Du levé de terrain à l'analyse spatiale : précision de mesure et lecture du territoire, au service de projets d'aménagement et de cartographie."
+           data-en="From field survey to spatial analysis: measurement precision and territorial insight, applied to land-planning and mapping projects.">
+          Du levé de terrain à l'analyse spatiale : précision de mesure et lecture du territoire, au service de projets d'aménagement et de cartographie.
+        </p>
+        <div class="btn-row">
+          <button class="btn-primary i18n" data-fr="Voir les projets" data-en="View projects" onclick="showTab('projets')">Voir les projets</button>
+          <button class="btn-outline i18n" data-fr="Me contacter" data-en="Get in touch" onclick="showTab('contact')">Me contacter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFIL -->
+  <div id="tab-apropos" class="tab-panel">
+    <div class="section">
+      <div class="eyebrow"><span class="dash"></span><span class="i18n" data-fr="Repère 002 — Profil" data-en="Marker 002 — Profile">Repère 002 — Profil</span></div>
+      <h2 class="section-title display i18n" data-fr="À propos de moi" data-en="About me">À propos de moi</h2>
+
+      <div class="card">
+        <p class="lede i18n"
+           data-fr="Opérateur géomètre-topographe et titulaire d'une licence en géographie, je dispose d'une solide familiarisation avec les Systèmes d'Information Géographique (SIG) et l'analyse spatiale. Habitué aux travaux de terrain et aux outils DAO/SIG (QGIS, R, AutoCAD), j'ai construit une pratique qui allie précision technique et lecture du territoire."
+           data-en="A land surveying operator with a bachelor's degree in geography, I have solid working knowledge of Geographic Information Systems (GIS) and spatial analysis. Experienced in fieldwork and CAD/GIS tools (QGIS, R, AutoCAD), I've built a practice that combines technical precision with a reading of the territory.">
+          Opérateur géomètre-topographe et titulaire d'une licence en géographie, je dispose d'une solide familiarisation avec les Systèmes d'Information Géographique (SIG) et l'analyse spatiale. Habitué aux travaux de terrain et aux outils DAO/SIG (QGIS, R, AutoCAD), j'ai construit une pratique qui allie précision technique et lecture du territoire.
+        </p>
+        <p class="lede i18n" style="margin-top:12px;"
+           data-fr="Cette pratique de terrain, certifiée par l'Ordre des Géomètres du Togo (plans de bornage, calculs de superficie, implantations), s'articule avec des compétences géomatiques en analyse spatiale et visualisation de données."
+           data-en="This field practice, certified by the Ordre des Géomètres du Togo (boundary-marking plans, surface calculations, setting-out), combines with geomatics skills in spatial analysis and data visualization.">
+          Cette pratique de terrain, certifiée par l'Ordre des Géomètres du Togo (plans de bornage, calculs de superficie, implantations), s'articule avec des compétences géomatiques en analyse spatiale et visualisation de données.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="lede i18n"
+           data-fr="Au-delà du cœur de métier, je construis en continu des compétences complémentaires : gestion de projet Agile, suivi-évaluation de projets de développement, sciences des données, conception de sites web efficaces et usage professionnel de l'IA. Cette polyvalence me permet d'aborder un projet géomatique dans son ensemble — de la collecte de la donnée jusqu'à sa restitution et sa gestion en mode projet."
+           data-en="Beyond the core craft, I continuously build complementary skills: Agile project management, monitoring &amp; evaluation of development projects, data science, effective website design, and the professional use of AI. This versatility lets me approach a geomatics project end to end — from data collection through to delivery and project management.">
+          Au-delà du cœur de métier, je construis en continu des compétences complémentaires : gestion de projet Agile, suivi-évaluation de projets de développement, sciences des données, conception de sites web efficaces et usage professionnel de l'IA. Cette polyvalence me permet d'aborder un projet géomatique dans son ensemble — de la collecte de la donnée jusqu'à sa restitution et sa gestion en mode projet.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3 class="mono i18n" style="font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent2); margin:0 0 10px;" data-fr="En bref" data-en="At a glance">En bref</h3>
+        <span class="chip i18n" data-fr="Terrain certifié" data-en="Certified fieldwork">Terrain certifié</span><span class="chip i18n" data-fr="SIG &amp; analyse spatiale" data-en="GIS &amp; spatial analysis">SIG &amp; analyse spatiale</span><span class="chip i18n" data-fr="Cartographie" data-en="Cartography">Cartographie</span><span class="chip i18n" data-fr="Gestion de projet" data-en="Project management">Gestion de projet</span><span class="chip i18n" data-fr="Autodidacte" data-en="Self-taught">Autodidacte</span><span class="chip">FR · EN · Éwé</span>
+      </div>
+
+      <div class="eyebrow" style="margin-top:28px;"><span class="dash"></span><span class="i18n" data-fr="Repère 003 — Formation" data-en="Marker 003 — Education">Repère 003 — Formation</span></div>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <strong>Attestation d'Opérateur Topographe</strong>
+          <span class="mono" style="font-size:10px; color:var(--accent); white-space:nowrap; margin-left:8px;">2025–2026</span>
+        </div>
+        <p class="cert-en" style="margin:2px 0 0; color:var(--text-muted); font-size:12px; font-style:italic;">(Land Surveying Operator Certificate)</p>
+        <p style="color:var(--text-muted); font-size:14px; margin:4px 0 0;">Institut Formatec</p>
+      </div>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <strong>Licence Fondamentale en Géographie</strong>
+          <span class="mono" style="font-size:10px; color:var(--accent); white-space:nowrap; margin-left:8px;">2021–2025</span>
+        </div>
+        <p class="cert-en" style="margin:2px 0 0; color:var(--text-muted); font-size:12px; font-style:italic;">(Bachelor's Degree in Geography)</p>
+        <p style="color:var(--text-muted); font-size:14px; margin:4px 0 0;">Université de Lomé</p>
+      </div>
+
+      <div class="eyebrow" style="margin-top:28px;"><span class="dash"></span><span class="i18n" data-fr="Repère 004 — Certifications" data-en="Marker 004 — Certifications">Repère 004 — Certifications</span></div>
+      <p class="i18n" style="color:var(--text-muted); font-size:12px; margin:-4px 0 16px;"
+         data-fr="Intitulés conservés tels que délivrés."
+         data-en="Titles kept exactly as issued, with an English gloss in italics.">Intitulés conservés tels que délivrés.</p>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Introduction à la gestion du cycle de projet
+          <span class="cert-en">(Introduction to Project Cycle Management)</span>
+          <span class="cert-desc">Centre International de Formation de l'OIT · Cours en ligne autoguidé, août 2025.</span>
+          <img class="cert-thumb" src="certif-cycle-projet.png" alt="Certificat — Introduction à la gestion du cycle de projet" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Suivi et évaluation d'un projet de développement
+          <span class="cert-en">(Monitoring and Evaluation of a Development Project)</span>
+          <span class="cert-desc">Campus Groupe AFD · Attestation de réussite, sept. 2025.</span>
+          <img class="cert-thumb" src="certif-se.png" alt="Certificat — Suivi et évaluation d'un projet de développement" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg><span class="cert-text">Réseautage professionnel<span class="cert-en">(Professional Networking)</span></span></div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Gestion de projet Agile
+          <span class="cert-en">(Agile Project Management)</span>
+          <span class="cert-desc">HP LIFE (HP Foundation) · MVP, développement itératif, Scrum &amp; Kanban, 2 juil. 2026.</span>
+          <img class="cert-thumb" src="certif-agile-hplife.png" alt="Certificat — Gestion de projet Agile (HP LIFE)" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Rédaction de CV et entretien d'embauche
+          <span class="cert-en">(Resume Writing and Interviewing)</span>
+          <span class="cert-desc">HP LIFE (HP Foundation) · CV, lettre de motivation, préparation à l'entretien, 17 juin 2026.</span>
+          <img class="cert-thumb" src="certif-cv-entretien.png" alt="Certificat — Rédaction de CV et entretien d'embauche" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Sciences et analyses des données
+          <span class="cert-en">(Data Science and Analytics)</span>
+          <span class="cert-desc">HP LIFE (HP Foundation) · Méthodologies et outils d'analyse de données orientée entreprise, 17 juin 2026.</span>
+          <img class="cert-thumb" src="certif-sciences-donnees.png" alt="Certificat — Sciences et analyses des données" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Sites Web efficaces
+          <span class="cert-en">(Effective Websites)</span>
+          <span class="cert-desc">HP LIFE (HP Foundation) · Bonnes pratiques de conception, comportement client, mesure d'audience, 19 juin 2026.</span>
+          <img class="cert-thumb" src="certif-sites-web.png" alt="Certificat — Sites Web efficaces" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          L'IA pour les professionnels
+          <span class="cert-en">(AI for Professionals)</span>
+          <span class="cert-desc">HP LIFE (HP Foundation) · Usage éthique de l'IA, rédaction de prompts, intégration professionnelle, 5 juil. 2026.</span>
+          <img class="cert-thumb" src="certif-ia-pro.png" alt="Certificat — L'IA pour les professionnels" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+
+      <div class="cert-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#5C8374" style="margin-top:3px;"><path d="M12 3 2 21h20L12 3Z"/></svg>
+        <span class="cert-text">
+          Masterclass HTML &amp; CSS — La base du développement web
+          <span class="cert-desc">EcoGeoData Corporation · Initiation au développement web (HTML/CSS) dans le cadre d'un renforcement de capacités, sept. 2025.</span>
+          <img class="cert-thumb" src="certif-html-css.png" alt="Certificat — Masterclass HTML & CSS" onclick="openLightbox(this.src)">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPETENCES -->
+  <div id="tab-competences" class="tab-panel">
+    <div class="section">
+      <div class="eyebrow"><span class="dash"></span><span class="i18n" data-fr="Repère 010 — Boîte à outils" data-en="Marker 010 — Toolbox">Repère 010 — Boîte à outils</span></div>
+      <h2 class="section-title display i18n" data-fr="Compétences" data-en="Skills">Compétences</h2>
+
+      <div class="card">
+        <h3 class="mono i18n" style="font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent2); margin:0 0 8px;" data-fr="Informatique &amp; SIG" data-en="IT &amp; GIS">Informatique &amp; SIG</h3>
+        <div class="row"><span class="name">QGIS</span><span class="sub i18n" data-fr="Analyse spatiale" data-en="Spatial analysis">Analyse spatiale</span></div>
+        <div class="row"><span class="name">R (RStudio)</span><span class="sub i18n" data-fr="Analyse spatiale &amp; statistique" data-en="Spatial &amp; statistical analysis">Analyse spatiale &amp; statistique</span></div>
+        <div class="row"><span class="name">AutoCAD</span><span class="sub i18n" data-fr="DAO" data-en="CAD">DAO</span></div>
+        <div class="row"><span class="name">KoboToolbox</span><span class="sub i18n" data-fr="Collecte numérique" data-en="Digital data collection">Collecte numérique</span></div>
+        <div class="row"><span class="name">Google Earth Pro</span><span class="sub i18n" data-fr="Cartographie" data-en="Cartography">Cartographie</span></div>
+      </div>
+
+      <div class="card">
+        <h3 class="mono i18n" style="font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent2); margin:0 0 8px;" data-fr="Terrain &amp; gestion" data-en="Field &amp; management">Terrain &amp; gestion</h3>
+        <div class="row"><span class="name i18n" data-fr="Topographie" data-en="Land surveying">Topographie</span><span class="sub i18n" data-fr="Levé · Traitement · Implantation" data-en="Survey · Processing · Setting-out">Levé · Traitement · Implantation</span></div>
+        <div class="row"><span class="name i18n" data-fr="Gestion de projet Agile" data-en="Agile project management">Gestion de projet Agile</span></div>
+        <div class="row"><span class="name i18n" data-fr="Suivi et évaluation" data-en="Monitoring &amp; evaluation">Suivi et évaluation</span></div>
+      </div>
+
+      <div class="card">
+        <h3 class="mono i18n" style="font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent2); margin:0 0 8px;" data-fr="Langues" data-en="Languages">Langues</h3>
+        <div class="row"><span class="name i18n" data-fr="Français" data-en="French">Français</span><span class="sub i18n" data-fr="Courant" data-en="Fluent">Courant</span></div>
+        <div class="row"><span class="name i18n" data-fr="Éwé" data-en="Ewe">Éwé</span><span class="sub i18n" data-fr="Courant" data-en="Fluent">Courant</span></div>
+        <div class="row"><span class="name i18n" data-fr="Anglais" data-en="English">Anglais</span><span class="sub i18n" data-fr="Niveau scolaire" data-en="School level">Niveau scolaire</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJETS -->
+  <div id="tab-projets" class="tab-panel">
+    <div class="section">
+      <div class="eyebrow"><span class="dash"></span><span class="i18n" data-fr="Repère 020 — Travaux" data-en="Marker 020 — Work">Repère 020 — Travaux</span></div>
+      <h2 class="section-title display i18n" data-fr="Projets" data-en="Projects">Projets</h2>
+
+      <div class="group-header">
+        <span class="group-title i18n" data-fr="Analyse spatiale &amp; SIG" data-en="Spatial Analysis &amp; GIS">Analyse spatiale &amp; SIG</span>
+        <span class="group-count">04</span>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Étude de cas SIG" data-en="GIS case study">Étude de cas SIG</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Cartographie des points d'eau (PMH)" data-en="Mapping Water Points (Hand Pumps)">Cartographie des points d'eau (PMH)</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Analyse spatiale sous QGIS pour identifier les villages prioritaires sans accès à l'eau au sein de limites préfectorales hexagonales : zones tampons, intersection spatiale, et automatisation du traitement via le Modeleur graphique (Graphical Modeler)."
+           data-en="Spatial analysis in QGIS to identify priority villages lacking water access within hexagonal prefecture boundaries: buffer zones, spatial intersection, and automated processing via the Graphical Modeler.">
+          Analyse spatiale sous QGIS pour identifier les villages prioritaires sans accès à l'eau au sein de limites préfectorales hexagonales : zones tampons, intersection spatiale, et automatisation du traitement via le Modeleur graphique (Graphical Modeler).
+        </p>
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag">Buffer</span><span class="tag i18n" data-fr="Intersection spatiale" data-en="Spatial intersection">Intersection spatiale</span><span class="tag">Graphical Modeler</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Analyse spatiale" data-en="Spatial analysis">Analyse spatiale</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte des pentes du terrain" data-en="Terrain Slope Map">Carte des pentes du terrain</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Production d'une carte de pente à partir d'un modèle numérique de terrain (MNT), avec classification en degrés pour identifier les secteurs à forte déclivité — donnée clé pour l'analyse de risques et la planification de l'aménagement."
+           data-en="Production of a slope map derived from a digital terrain model (DTM), classified in degrees to identify steep-gradient areas — key input for risk analysis and land-planning decisions.">
+          Production d'une carte de pente à partir d'un modèle numérique de terrain (MNT), avec classification en degrés pour identifier les secteurs à forte déclivité — donnée clé pour l'analyse de risques et la planification de l'aménagement.
+        </p>
+        <img class="map-thumb" src="carte-pente-terrain.png" alt="Carte de pente du terrain, classification en degrés" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">R (RStudio)</span><span class="tag i18n" data-fr="Modèle numérique de terrain" data-en="Digital terrain model">Modèle numérique de terrain</span><span class="tag i18n" data-fr="Analyse de pente" data-en="Slope analysis">Analyse de pente</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Télédétection" data-en="Remote sensing">Télédétection</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Analyse de la végétation (NDVI)" data-en="Vegetation Analysis (NDVI)">Analyse de la végétation (NDVI)</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Calcul de l'indice de végétation par différence normalisée (NDVI) pour évaluer la densité et la vigueur du couvert végétal sur une zone d'étude, à partir d'imagerie satellite."
+           data-en="Computation of the Normalized Difference Vegetation Index (NDVI) to assess vegetation density and vigor over a study area, from satellite imagery.">
+          Calcul de l'indice de végétation par différence normalisée (NDVI) pour évaluer la densité et la vigueur du couvert végétal sur une zone d'étude, à partir d'imagerie satellite.
+        </p>
+        <img class="map-thumb" src="ndvi.png" alt="Carte NDVI — indice de végétation" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">R (RStudio)</span><span class="tag">NDVI</span><span class="tag i18n" data-fr="Imagerie satellite" data-en="Satellite imagery">Imagerie satellite</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Analyse spatiale" data-en="Spatial analysis">Analyse spatiale</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Centroïdes des préfectures du Togo" data-en="Prefecture Centroids of Togo">Centroïdes des préfectures du Togo</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Génération des centroïdes des préfectures du Togo puis jointure spatiale avec une grille de référence, afin de dénombrer et localiser les préfectures par maille — exercice de manipulation de jointures et de géométries dérivées sous QGIS."
+           data-en="Generation of Togo's prefecture centroids followed by a spatial join with a reference grid, to count and locate prefectures per grid cell — an exercise in spatial joins and derived geometries in QGIS.">
+          Génération des centroïdes des préfectures du Togo puis jointure spatiale avec une grille de référence, afin de dénombrer et localiser les préfectures par maille — exercice de manipulation de jointures et de géométries dérivées sous QGIS.
+        </p>
+        <img class="map-thumb" src="carte-centroides.jpg" alt="Carte des centroïdes des préfectures du Togo" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag i18n" data-fr="Jointure spatiale" data-en="Spatial join">Jointure spatiale</span><span class="tag">Centroïdes</span>
+        </div>
+      </div>
+
+      <div class="group-header">
+        <span class="group-title i18n" data-fr="Cartographie de localisation" data-en="Location Cartography">Cartographie de localisation</span>
+        <span class="group-count">06</span>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Cartographie — Projet personnel" data-en="Cartography — Personal project">Cartographie — Projet personnel</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte de situation géographique — Lycée de Bè-Kpota" data-en="Location Map — Lycée de Bè-Kpota">Carte de situation géographique — Lycée de Bè-Kpota</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Réalisation d'une carte de situation géographique localisant le Lycée de Bè-Kpota (Lomé) dans son environnement urbain : réseau routier, zones bâties et repères de quartier. Habillage cartographique complet — légende, échelle, flèche du nord, grille de coordonnées (EPSG: 32631, WGS 84 / UTM zone 31N)."
+           data-en="Production of a location map placing the Lycée de Bè-Kpota (Lomé) within its urban surroundings: road network, built-up zones and neighborhood landmarks. Full cartographic layout — legend, scale bar, north arrow, coordinate grid (EPSG: 32631, WGS 84 / UTM zone 31N).">
+          Réalisation d'une carte de situation géographique localisant le Lycée de Bè-Kpota (Lomé) dans son environnement urbain : réseau routier, zones bâties et repères de quartier. Habillage cartographique complet — légende, échelle, flèche du nord, grille de coordonnées (EPSG: 32631, WGS 84 / UTM zone 31N).
+        </p>
+        <img class="map-thumb" src="carte-lycee-bekpota.jpg" alt="Carte de situation géographique du Lycée de Bè-Kpota" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag i18n" data-fr="Habillage cartographique" data-en="Map layout">Habillage cartographique</span><span class="tag">GEODATA TOGO</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Cartographie administrative" data-en="Administrative cartography">Cartographie administrative</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte des régions de France" data-en="Map of French Regions">Carte des régions de France</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Réalisation d'une carte de localisation mettant en évidence une région administrative (Île-de-France) au sein du découpage régional français — habillage complet : titre, échelle, orientation."
+           data-en="Location map highlighting one administrative region (Île-de-France) within the French regional divisions — full layout: title, scale, orientation.">
+          Réalisation d'une carte de localisation mettant en évidence une région administrative (Île-de-France) au sein du découpage régional français — habillage complet : titre, échelle, orientation.
+        </p>
+        <img class="map-thumb" src="regions-france.png" alt="Carte des régions de France" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag i18n" data-fr="Carte de localisation" data-en="Location map">Carte de localisation</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Cartographie administrative" data-en="Administrative cartography">Cartographie administrative</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte des régions du Togo" data-en="Map of Togo's Regions">Carte des régions du Togo</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Cartographie du découpage régional du Togo (Savanes, Kara, Centrale, Plateaux, Maritime), avec dégradé de teinte par région et habillage cartographique standard."
+           data-en="Mapping of Togo's regional divisions (Savanes, Kara, Centrale, Plateaux, Maritime), with a shaded color ramp per region and standard cartographic layout.">
+          Cartographie du découpage régional du Togo (Savanes, Kara, Centrale, Plateaux, Maritime), avec dégradé de teinte par région et habillage cartographique standard.
+        </p>
+        <img class="map-thumb" src="regions-togo.png" alt="Carte des régions du Togo" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag i18n" data-fr="Découpage administratif" data-en="Administrative divisions">Découpage administratif</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Cartographie administrative" data-en="Administrative cartography">Cartographie administrative</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte de localisation — Anié" data-en="Location Map — Anié">Carte de localisation — Anié</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Carte de localisation de la commune d'Anié (région des Plateaux) avec zoom sur son découpage en cantons (Pallakoko, Kolokopé, Anié, Adogbénou, Atchinedji, Glitto), replacée dans le contexte national togolais."
+           data-en="Location map of the Anié commune (Plateaux region) with a zoomed inset on its division into cantons (Pallakoko, Kolokopé, Anié, Adogbénou, Atchinedji, Glitto), set within the national context of Togo.">
+          Carte de localisation de la commune d'Anié (région des Plateaux) avec zoom sur son découpage en cantons (Pallakoko, Kolokopé, Anié, Adogbénou, Atchinedji, Glitto), replacée dans le contexte national togolais.
+        </p>
+        <img class="map-thumb" src="carte-anie.jpg" alt="Carte de localisation d'Anié" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag i18n" data-fr="Carte de localisation" data-en="Location map">Carte de localisation</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Cartographie administrative" data-en="Administrative cartography">Cartographie administrative</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte de localisation — Sotouboua" data-en="Location Map — Sotouboua">Carte de localisation — Sotouboua</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Carte de localisation de la commune de Sotouboua (région Centrale) avec son découpage en cantons (Aouda, Fazao, Adjengéré, Kaniamboua, Titigbé, Sessaro, Tabindé, Bodjondé, Tchébébé, Kazaboua) et carton de situation dans le Togo."
+           data-en="Location map of the Sotouboua commune (Centrale region) with its division into cantons (Aouda, Fazao, Adjengéré, Kaniamboua, Titigbé, Sessaro, Tabindé, Bodjondé, Tchébébé, Kazaboua) and a national inset map.">
+          Carte de localisation de la commune de Sotouboua (région Centrale) avec son découpage en cantons (Aouda, Fazao, Adjengéré, Kaniamboua, Titigbé, Sessaro, Tabindé, Bodjondé, Tchébébé, Kazaboua) et carton de situation dans le Togo.
+        </p>
+        <img class="map-thumb" src="carte-sotouboua.jpg" alt="Carte de localisation de Sotouboua" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">QGIS</span><span class="tag i18n" data-fr="Carte de localisation" data-en="Location map">Carte de localisation</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Cartographie de référence" data-en="Reference cartography">Cartographie de référence</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Carte du campus de l'Université de Lomé" data-en="University of Lomé Campus Map">Carte du campus de l'Université de Lomé</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Carte de référence du campus universitaire de Lomé, mobilisant des données OpenStreetMap : bâtiments, infrastructures et points d'intérêt du campus."
+           data-en="Reference map of the University of Lomé campus, built from OpenStreetMap data: buildings, infrastructure and points of interest across campus.">
+          Carte de référence du campus universitaire de Lomé, mobilisant des données OpenStreetMap : bâtiments, infrastructures et points d'intérêt du campus.
+        </p>
+        <img class="map-thumb" src="carte-campus-ul.jpg" alt="Carte du campus de l'Université de Lomé" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag">OpenStreetMap</span><span class="tag i18n" data-fr="Carte de référence" data-en="Reference map">Carte de référence</span>
+        </div>
+      </div>
+
+      <div class="group-header">
+        <span class="group-title i18n" data-fr="Levés topographiques &amp; bornage" data-en="Land Surveys &amp; Boundary Marking">Levés topographiques &amp; bornage</span>
+        <span class="group-count">03</span>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Travaux pratiques — Topographie" data-en="Practical exercise — Surveying">Travaux pratiques — Topographie</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Plan de terrain (bornage)" data-en="Land Survey Plan (Boundary Marking)">Plan de terrain (bornage)</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Établissement d'un plan de terrain au 1/1000 conforme aux normes de l'Ordre des Géomètres du Togo : coordonnées de bornage (système local), mesures d'implantation, orientation et plan de situation. Informations personnelles masquées pour la publication."
+           data-en="Preparation of a 1:1000 land survey plan compliant with the standards of the Ordre des Géomètres du Togo: boundary-marker coordinates (local system), setting-out measurements, orientation and location plan. Personal information redacted for publication.">
+          Établissement d'un plan de terrain au 1/1000 conforme aux normes de l'Ordre des Géomètres du Togo : coordonnées de bornage (système local), mesures d'implantation, orientation et plan de situation. Informations personnelles masquées pour la publication.
+        </p>
+        <img class="map-thumb" src="plan-terrain.jpg" alt="Plan de terrain — travaux pratiques de topographie" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag i18n" data-fr="Bornage" data-en="Boundary marking">Bornage</span><span class="tag i18n" data-fr="Levé topographique" data-en="Land survey">Levé topographique</span><span class="tag">1/1000</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Travaux pratiques — Topographie" data-en="Practical exercise — Surveying">Travaux pratiques — Topographie</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Plan de terrain — Tabligbo" data-en="Land Survey Plan — Tabligbo">Plan de terrain — Tabligbo</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Plan de terrain au 1/50 000 dans le canton de Tabligbo (préfecture de Yoto) : bornage, calcul de surface, extrait de carte JICA pour la mise en situation. Informations personnelles masquées pour la publication."
+           data-en="1:50,000 land survey plan in the Tabligbo canton (Yoto prefecture): boundary marking, surface calculation, JICA map extract for context. Personal information redacted for publication.">
+          Plan de terrain au 1/50 000 dans le canton de Tabligbo (préfecture de Yoto) : bornage, calcul de surface, extrait de carte JICA pour la mise en situation. Informations personnelles masquées pour la publication.
+        </p>
+        <img class="map-thumb" src="plan-tabligbo.jpg" alt="Plan de terrain — Tabligbo" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag i18n" data-fr="Bornage" data-en="Boundary marking">Bornage</span><span class="tag i18n" data-fr="Calcul de surface" data-en="Area calculation">Calcul de surface</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="mono i18n" style="font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:8px;" data-fr="Levé topographique" data-en="Land survey">Levé topographique</div>
+        <h3 style="margin:0 0 8px; font-size:1.1rem;" class="i18n" data-fr="Plan de terrain — Baguida" data-en="Land Survey Plan — Baguida">Plan de terrain — Baguida</h3>
+        <p class="lede i18n" style="font-size:14px;"
+           data-fr="Levé et calcul d'un plan de terrain dans le canton de Baguida (Golfe 6) : détermination des coordonnées de bornage, calcul de superficie (1202,38 m²), dressé et signé en tant que topographe. Informations personnelles masquées pour la publication."
+           data-en="Survey and computation of a land plan in the Baguida canton (Golfe 6): boundary-marker coordinates, area calculation (1202.38 m²), drafted and signed as the surveyor. Personal information redacted for publication.">
+          Levé et calcul d'un plan de terrain dans le canton de Baguida (Golfe 6) : détermination des coordonnées de bornage, calcul de superficie (1202,38 m²), dressé et signé en tant que topographe. Informations personnelles masquées pour la publication.
+        </p>
+        <img class="map-thumb" src="plan-baguida.jpg" alt="Plan de terrain — Baguida" onclick="openLightbox(this.src)">
+        <div style="margin-top:8px;">
+          <span class="tag i18n" data-fr="Bornage" data-en="Boundary marking">Bornage</span><span class="tag i18n" data-fr="Calcul de superficie" data-en="Area calculation">Calcul de superficie</span>
+        </div>
+      </div>
+
+      <div class="card dashed">
+        <p class="i18n" style="color:var(--text-muted); font-size:14px; text-align:center; padding:16px 0; margin:0;"
+           data-fr="D'autres projets seront ajoutés prochainement — levés topographiques, implantations, missions terrain."
+           data-en="More projects coming soon — land surveys, setting-out work, field missions.">
+          D'autres projets seront ajoutés prochainement — levés topographiques, implantations, missions terrain.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="tab-contact" class="tab-panel">
+    <div class="section">
+      <div class="eyebrow"><span class="dash"></span><span class="i18n" data-fr="Repère 030 — Coordonnées" data-en="Marker 030 — Contact details">Repère 030 — Coordonnées</span></div>
+      <h2 class="section-title display">Contact</h2>
+
+      <a href="tel:+22897257151" class="contact-row">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A66B" stroke-width="2"><path d="M6 3h3l2 5-2 1a11 11 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z"/></svg>
+        <div><p class="main">+228 97 25 71 51 / 70 02 80 63</p><p class="label i18n" data-fr="Téléphone" data-en="Phone">Téléphone</p></div>
+      </a>
+      <a href="mailto:clementakey@gmail.com" class="contact-row">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A66B" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+        <div><p class="main">clementakey@gmail.com</p><p class="label">Email</p></div>
+      </a>
+      <div class="contact-row" style="cursor:default;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A66B" stroke-width="2"><path d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div><p class="main">Agoè Plateau, Lomé — Togo</p><p class="label i18n" data-fr="Localisation" data-en="Location">Localisation</p></div>
+      </div>
+
+      <p class="quote i18n" style="font-size:14px; margin-top:40px;" data-fr="Ouvert aux échanges et opportunités professionnelles" data-en="Open to professional exchanges and opportunities">Ouvert aux échanges et opportunités professionnelles</p>
+    </div>
+  </div>
+
+  <div class="bottomnav">
+    <button class="nav-btn active" data-tab="accueil" onclick="showTab('accueil')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/></svg>
+      <span class="label i18n" data-fr="Accueil" data-en="Home">Accueil</span>
+    </button>
+    <button class="nav-btn" data-tab="apropos" onclick="showTab('apropos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      <span class="label i18n" data-fr="À propos" data-en="About">À propos</span>
+    </button>
+    <button class="nav-btn" data-tab="competences" onclick="showTab('competences')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-3 3-3 3 3-3 3-3"/></svg>
+      <span class="label i18n" data-fr="Compétences" data-en="Skills">Compétences</span>
+    </button>
+    <button class="nav-btn" data-tab="projets" onclick="showTab('projets')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
+      <span class="label i18n" data-fr="Projets" data-en="Projects">Projets</span>
+    </button>
+    <button class="nav-btn" data-tab="contact" onclick="showTab('contact')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+      <span class="label">Contact</span>
+    </button>
+  </div>
+
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Certificat agrandi">
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  function showTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(function(btn){
+      if (btn.getAttribute('data-tab') === name) { btn.classList.add('active'); }
+      else { btn.classList.remove('active'); }
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function setLang(lang) {
+    document.querySelectorAll('.i18n').forEach(function(el){
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('html-root').setAttribute('lang', lang);
+  }
+</script>
+
+</body>
+</html>
